@@ -15,6 +15,8 @@ public class doubts {
 	}
 	
 	public static void main(String[] args) {
+		
+		reverse(122);
 		System.out.println(reverse(12345678));
 		
 	}
