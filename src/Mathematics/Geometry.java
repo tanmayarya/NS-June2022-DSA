@@ -66,7 +66,6 @@ public class Geometry {
 		int cx = scn.nextInt();
 		int cy = scn.nextInt();
 		
-		trianglesLove(ax, ay, bx, by, cx, cy);
 
 	}
 
