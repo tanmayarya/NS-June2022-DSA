@@ -23,10 +23,10 @@ public class Questions3 {
 		
 		int ansFromArrayStartingAtNextIdx = lastIndex(arr, val, idx + 1);
 		
-		if(ansFromArrayStartingAtNextIdx == -1) {
-			if(arr[idx] == val) return idx;
-			else return -1;
-		} else { // ans is present
+		if(ansFromArrayStartingAtNextIdx == -1) { // val was not present
+			if(arr[idx] == val) return idx; // found val at idx
+			else return -1; // didn't find any ans
+		} else { // val is present
 			return ansFromArrayStartingAtNextIdx;
 		}
 	}
