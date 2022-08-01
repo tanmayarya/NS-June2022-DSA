@@ -26,7 +26,7 @@ public class Sorting {
 			int pos = pass - 1;
 			int minIdx = pos;
 			// find minIdx
-			for(int i = pos; i < arr.length; i++) {
+			for(int i = pos + 1; i < arr.length; i++) {
 				if(arr[i] < arr[minIdx]) {
 					minIdx = i;
 				}
