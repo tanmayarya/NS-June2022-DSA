@@ -34,6 +34,8 @@ public class Sorting2 {
 		return res;
 	}
 	
+	
+	
 	public static int[] mergeSort(int arr[], int start, int end) {
 		// base case
 		if(start == end) {
@@ -51,6 +53,61 @@ public class Sorting2 {
 		int res[] = merge(firstHalf, secondHalf);
 		return res;
 	}
+	
+	
+	public static void swap (int arr[], int i, int j) {
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+	}
+	
+	
+	public static void partition3Way(int arr[], int pivot) {
+		int left = 0, mid = 0, right = arr.length - 1;
+		
+		while(mid <= right) {
+			if(arr[mid] < pivot) {
+//				case 1
+				swap(arr, mid, left);
+				mid++;
+				left++;
+				
+			}else if(arr[mid] == pivot) {
+				// case 2
+				mid++;
+			}else {
+				swap(arr, mid, right);
+				right--;
+			}
+		}
+		
+	}
+	
+	public static int partition(int arr[], int pivot, int start, int end) {
+		int i = start, j = start;
+		while(i <= end) {
+			if(arr[i] <= pivot) {
+				// region 1
+				swap(arr, i, j);
+				i++;
+				j++;
+			}else {
+				// region 2
+				i++;
+			}
+		}
+		return j - 1;
+	}
+	
+	public static void quickSort(int arr[], int start, int end) {
+		
+		if(start >= end) return;
+		
+		int pivot = arr[end];
+		int pi = partition(arr, pivot, start, end);
+		quickSort(arr, start, pi - 1);
+		quickSort(arr, pi + 1, end);
+	}
 
 	
 	public static void display(int arr[]) {
@@ -65,11 +122,15 @@ public class Sorting2 {
 		int b[] = {1, 3, 4, 6, 10, 14, 15, 17};
 		
 		int c[] = merge(a, b);
-		display(c);
+//		display(c);
 
-		int arr[] = {1,5,2,9,3,1,7};
-		display(mergeSort(arr, 0, arr.length - 1));
+		int arr[] = {1,5,2,9,3,1,7,4};
+//		display(mergeSort(arr, 0, arr.length - 1));
 		display(arr);
+		
+		System.out.println(partition(arr, 4));
+		display(arr);
+		
 	}
 
 }
