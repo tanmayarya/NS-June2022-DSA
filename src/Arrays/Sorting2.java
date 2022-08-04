@@ -128,7 +128,7 @@ public class Sorting2 {
 //		display(mergeSort(arr, 0, arr.length - 1));
 		display(arr);
 		
-		System.out.println(partition(arr, 4));
+		System.out.println(partition(arr, 4, 0, arr.length - 1));
 		display(arr);
 		
 	}
