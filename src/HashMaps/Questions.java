@@ -99,6 +99,54 @@ public class Questions {
 		return count;
 	}
 	
+	public static boolean isVovel(char ch) {
+		return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+	}
+	
+	public static int shortestSubStringWithAllVovels(String s) {
+		
+		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+		int start = 0, end = 0, minLength = Integer.MAX_VALUE;
+		
+		while(end < s.length()) {
+			
+			// acquire
+			while(end < s.length() && map.size() < 5) {
+				char ch = s.charAt(end);
+				if(isVovel(ch) == true) {
+					// add in the hashmap
+					int initialCount = map.getOrDefault(ch, 0);
+					map.put(ch, initialCount + 1);
+				}
+				end++;
+			}
+			
+			// check for possible ans
+			if(map.size() == 5) { // we have 1 valid ans
+				// e - s
+				if(end - start < minLength) minLength = end - start;
+			}
+			
+			// Release for optimisation
+			while(start < s.length() && map.size() == 5) {
+				char ch = s.charAt(start);
+				if(isVovel(ch)) {
+					int initialCount = map.get(ch);
+					if(initialCount == 1) {
+						map.remove(ch);
+						
+						// check for valid ans
+						if(end - start < minLength) minLength = end - start;
+					}
+					else map.put(ch, initialCount - 1);
+				}
+				start++;
+			}
+		}
+		return minLength;
+		
+	}
+	
 	public static void main(String[] args) {
 //		charWithMaxFreq(new char[] {'a', 'b', 'c','a', 'b', 'b'});
 		
