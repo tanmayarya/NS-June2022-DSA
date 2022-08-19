@@ -3,11 +3,13 @@ package OOPS;
 class Student {
 	String name;
 	int rollno;
-	static int count = 0;
+	static int count;
 	
 	static {
 		System.out.println("inside static block");
+		count = 0;
 	}
+	
 	
 	Student() {
 		System.out.println("Running constructor");
@@ -39,6 +41,10 @@ class Student {
 
 
 public class Basics {
+	
+	 class Example {
+		
+	}
 
 	public static void main(String[] args) {
 		Student s1 = new Student();
