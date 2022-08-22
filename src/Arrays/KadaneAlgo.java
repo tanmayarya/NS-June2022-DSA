@@ -31,22 +31,23 @@ public class KadaneAlgo {
 	}
 	
 	public static int maxSumCircularSubarray(int arr[]) {
+		int max = arr[0], maxeh = arr[0];
+		int min = arr[0], mineh = arr[0];
+		int sum = arr[0];
 		
-		int arraySum = 0;
-		for(int i = 0; i < arr.length; i++) 
-			arraySum += arr[i];
-		
-		int doubleArray[] = new int[arr.length * 2];
-		
-		for(int i = 0; i < arr.length; i++) {
-			doubleArray[i] = arr[i];
-			doubleArray[arr.length + i] = arr[i];
+		for(int i = 1; i < arr.length; i++ ) {
+			
+			maxeh = Math.max(arr[i], maxeh + arr[i]);
+			max = Math.max(maxeh, max);
+			
+			mineh = Math.min(arr[i], mineh + arr[i]);
+			min = Math.min(min, mineh);
+			
+			sum += arr[i];
 		}
+		if(min == sum) return max;
 		
-		int negativeWindow = negativeKadanes(doubleArray);
-		if(negativeWindow > 0) return arraySum;
-		else return arraySum - negativeWindow;
-		
+		return Math.max(max, sum - min);
 	}
 
 	public static void main(String[] args) {

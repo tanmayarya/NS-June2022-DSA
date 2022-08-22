@@ -2,7 +2,7 @@ package Recursion;
 
 public class Questions2 {
 
-	public static int  fact(int n) {
+	public static int fact(int n) {
 		if(n == 1) return 1;
 		
 		int factnm1 = fact(n-1);

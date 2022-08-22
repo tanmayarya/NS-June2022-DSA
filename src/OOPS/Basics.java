@@ -1,4 +1,5 @@
 package OOPS;
+import Recursion.Questions2;
 
 class Student {
 	String name;
@@ -62,6 +63,8 @@ public class Basics {
 		s1.printCount();
 		Student.printCount();
 //		Student.printInfo(); does not exist
+		
+		System.out.println(Questions2.fact(5));
 	}
 	
 
