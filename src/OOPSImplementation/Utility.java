@@ -11,5 +11,19 @@ public class Utility {
 		
 		StringBuilder sb = new StringBuilder("Tanmay");
 		sb.toString();
+		
+		Shape triangle = new Triangle();
+		triangle.area();
+		
+		Square square = new Square();
+		square.area();
+		
+		Vehicle car = new Car();
+		car.start();
+		car.accelerate(20);
+		car.stop();
+		
+		Vehicle bike = new Bike();
+		
 	}
 }
