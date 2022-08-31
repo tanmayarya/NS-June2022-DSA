@@ -1,5 +1,4 @@
 package LinkedList;
-
 public class Utility {
 	public static void main(String[] args) {
 		
@@ -20,7 +19,10 @@ public class Utility {
 //		ll.display();
 //		System.out.println(ll.removeLast());
 		ll.display();
-		ll.reverseDI();
+//		ll.reverseDI();
+//		ll.reversePI();
+//		ll.reversePR();
+		ll.reverseDR();
 		ll.display();
 	}
 }

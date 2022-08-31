@@ -19,6 +19,9 @@ public class LinkedList {
 	private Node head;
 	private Node tail;
 	private int size;
+
+	private Node left;
+	
 	
 	public void addFirst(int data) {
 		Node n = new Node(data);
@@ -141,7 +144,7 @@ public class LinkedList {
 		two.data = temp;
 	}
 	
-	// tc = O(n^2)
+	// tc => O(n^2)
 	public void reverseDI() {
 		int left = 0, right = this.size - 1;
 		
@@ -155,6 +158,75 @@ public class LinkedList {
 			right--;
 		}
 	}
+	
+	public void swapHeadTail() {
+		Node temp = this.head;
+		this.head = this.tail;
+		this.tail = temp;
+	}
+	
+	// tc => O(n)
+	public void reversePI() {
+		Node curr = this.head;
+		Node prev = null;
+		
+		while(curr != null) {
+			Node next = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = next;
+		}
+		
+		this.swapHeadTail();
+	}
+	
+	// tc => O(n)
+	public void reversePR() {
+		this.reversePR(this.head);
+		this.swapHeadTail();
+	}
+	
+	// tc => O(n)
+	private void reversePR(Node curr) {
+		
+		if(curr.next == null) return;
+		
+		reversePR(curr.next);
+//		curr.next.next = curr;
+		Node nextNode = curr.next;
+		nextNode.next = curr;
+		curr.next = null;
+				
+	}
+	
+	public void reverseDR() {
+		left = this.head;
+		reverseDR(this.head, 0);
+	}
+	
+	private void reverseDR(Node right, int ridx) {
+		if(right == null) return;
+		
+		reverseDR(right.next, ridx + 1);
+		if(ridx >= this.size / 2) {
+			swap(left, right);
+			left = left.next;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 }
