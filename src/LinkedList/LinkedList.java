@@ -6,18 +6,22 @@ public class LinkedList {
 		int data;
 		Node next;
 		
+		Node(int data) {
+			this.data = data;
+		}
+		
 		Node(int data, Node next) {
 			this.data = data;
 			this.next = next;
 		}
 	} 
 	
-	Node head;
-	Node tail;
-	int size;
+	private Node head;
+	private Node tail;
+	private int size;
 	
 	public void addFirst(int data) {
-		Node n = new Node(data, null);
+		Node n = new Node(data);
 		n.next = this.head;
 		this.head = n;
 		if(this.size == 0) {
@@ -31,7 +35,7 @@ public class LinkedList {
 			this.addFirst(data);
 			return;
 		}
-		Node n = new Node(data, null);
+		Node n = new Node(data);
 		this.tail.next = n;
 		this.tail = n;
 		this.size++;
@@ -46,15 +50,68 @@ public class LinkedList {
 			this.addLast(data);
 			return;
 		}
-		Node n = new Node(data, null);
-		Node temp = this.get(idx - 1);
+		Node n = new Node(data);
+		Node temp = this.getNode(idx - 1);
 		n.next = temp.next;
 		temp.next = n;
 		this.size++;
 	}
 	
-	public Node get(int idx) {
-		return null;
+	public int removeFirst() {
+		if(this.size == 0) return -1;
+		int itemGettingRemoved = this.head.data;
+		if(this.size == 1) {
+			this.tail = null;
+		}
+		this.head = this.head.next;
+		this.size--;
+		return itemGettingRemoved;
+	}
+	
+	public int removeLast() {
+		if(this.size <= 1) return this.removeFirst();
+		
+		int itemGettingRemoved = this.tail.data;
+		Node secondLastNode = this.getNode(this.size - 2);
+		secondLastNode.next = null;
+		this.tail = secondLastNode;
+		this.size--;
+		return itemGettingRemoved;
+	}
+	
+	public int remove(int idx) {
+		if(this.size <= 1) return this.removeFirst();
+		else if(idx == this.size - 1) return this.removeLast();
+		
+		Node temp = this.getNode(idx - 1);
+		int itemGettingRemoved = temp.next.data;
+		temp.next = temp.next.next;
+		this.size--;
+		return itemGettingRemoved;
+	}
+	
+	public int get(int idx) {
+		Node targetNode = this.getNode(idx);
+		if(targetNode == null) return -1;
+		else return targetNode.data;
+	}
+	
+	public void set(int idx, int data) {
+		Node targetNode = this.getNode(idx);
+		if(targetNode != null) {
+			targetNode.data = data;
+		}
+	}
+	
+	private Node getNode(int idx) {
+		Node temp = this.head;
+		int count = 0;
+		while(temp != null && count < idx) {
+			count++;
+			temp = temp.next;
+		}
+		
+		return temp;
 	}
 	
 	public void display() {
@@ -76,6 +133,27 @@ public class LinkedList {
 		}
 		res += "null";
 		return res;
+	}
+	
+	public void swap(Node one, Node two) {
+		int temp = one.data;
+		one.data = two.data;
+		two.data = temp;
+	}
+	
+	// tc = O(n^2)
+	public void reverseDI() {
+		int left = 0, right = this.size - 1;
+		
+		while(left < right) {
+			Node leftNode = getNode(left);
+			Node rightNode = getNode(right);
+			
+			// swap
+			this.swap(leftNode, rightNode);
+			left++;
+			right--;
+		}
 	}
 	
 

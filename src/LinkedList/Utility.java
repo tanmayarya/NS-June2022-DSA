@@ -10,6 +10,17 @@ public class Utility {
 		ll.addFirst(100);
 		ll.addLast(50);
 		ll.display();
-		System.out.println(ll);
+		ll.add(40, 2);
+//		System.out.println(ll.get(1));
+//		ll.set(1, 200);
+//		System.out.println(ll);
+//		System.out.println(ll.removeFirst());
+//		System.out.println(ll.removeFirst());
+//		System.out.println(ll.removeFirst());
+//		ll.display();
+//		System.out.println(ll.removeLast());
+		ll.display();
+		ll.reverseDI();
+		ll.display();
 	}
 }
