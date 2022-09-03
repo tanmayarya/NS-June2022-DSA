@@ -214,12 +214,88 @@ public class LinkedList {
 		}
 	}
 	
+	public void removeDuplicate() {
+		Node temp = this.head;
+		
+		while(temp.next != null) {
+			if(temp.data == temp.next.data) {
+				temp.next = temp.next.next;
+			} else {
+				temp = temp.next;
+			}
+		}
+	}
 	
 	
+	public static LinkedList merge2SortedLL(LinkedList l1, LinkedList l2) {
+		Node one = l1.head;
+		Node two = l2.head;
+		
+		LinkedList res = new LinkedList();
+		res.size = l1.size + l2.size;
+		// first node to be added in res
+		if(one.data < two.data) {
+			res.head = one;
+			res.tail = one;
+			one = one.next;
+		} else {
+			res.head = two;
+			res.tail = two;
+			two = two.next;
+		}
+		
+		while(one != null && two != null) {
+			if(one.data < two.data) {
+				res.tail.next = one;
+				res.tail = one;
+				one = one.next;
+			} else {
+				res.tail.next = two;
+				res.tail = two;
+				two = two.next;
+			}
+			res.tail.next = null;
+		}
+		
+		if (one == null) {
+			res.tail.next = two;
+		} else if(two == null) {
+			res.tail.next = one;
+		} 
+		
+		return res;
+	}
 	
+	private void addLast(Node n) {
+		if(this.head == null) {
+			this.head = n;
+		}else {
+			this.tail.next = n;
+		}
+		this.tail = n;
+		this.size++;
+	}
 	
-	
-	
+	public void oddEven() {
+		LinkedList odd = new LinkedList();
+		LinkedList even = new LinkedList();
+		
+		Node curr = this.head;
+		while(curr != null) {
+			Node next = curr.next;
+			curr.next = null;
+			if(curr.data % 2 == 1) { // odd
+				odd.addLast(curr);
+			} else {
+				even.addLast(curr);
+			}
+			curr = next;
+		}
+		
+		odd.tail.next = even.head;
+		this.head = odd.head;
+		this.tail = even.tail;
+	}
 	
 	
 	
