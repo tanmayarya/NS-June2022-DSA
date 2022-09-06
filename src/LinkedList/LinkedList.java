@@ -2,9 +2,11 @@ package LinkedList;
 
 public class LinkedList {
 	
-	private class Node {
+	private static class Node {
 		int data;
 		Node next;
+		
+		public Node() {}
 		
 		Node(int data) {
 			this.data = data;
@@ -297,9 +299,38 @@ public class LinkedList {
 		this.tail = even.tail;
 	}
 	
+	public static Node reverse(Node node) {
+		return node;
+	}
 	
 	
-	
+	public static Node add(Node one, Node two) {
+		reverse(one);
+		reverse(two);
+		int carry = 0;
+		Node prev = null;
+		Node res = null;
+		while(!(one == null && two == null && carry == 0)) {
+			Node curr = new Node();
+			int sum =  (one == null ? 0 : one.data)
+					 + (two == null ? 0 : two.data) 
+					 + carry;
+			carry = sum / 10;
+			curr.data = sum % 10;
+			
+			if(one != null) one = one.next;
+			if(two != null) two = two.next;
+			
+			if(prev != null) {
+				prev.next = curr; 
+			} else {
+				res = curr;
+			}
+			prev = curr;
+		}
+		
+		return reverse(res);
+	}
 	
 	
 	
