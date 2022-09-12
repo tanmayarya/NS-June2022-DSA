@@ -1,8 +1,45 @@
 package Stack;
 
-import java.util.Stack;
+import java.util.*;
 
 public class Basics {
+	
+	public static int evaluatePostfix(String exp) {
+		Stack<Integer> st = new Stack<>();
+		String elements[] = exp.split(" ");
+		for(String element: elements) {
+			switch (element.charAt(0)) {
+			case '+': {
+				int oprnd2 = st.pop();
+				int oprnd1 = st.pop();
+				st.push(oprnd1 + oprnd2);
+				break;
+			}
+			case '-': {
+				int oprnd2 = st.pop();
+				int oprnd1 = st.pop();
+				st.push(oprnd1 - oprnd2);				
+				break;
+			}
+			case '/': {
+				int oprnd2 = st.pop();
+				int oprnd1 = st.pop();
+				st.push(oprnd1 / oprnd2);				
+				break;
+			}
+			case '*': {
+				int oprnd2 = st.pop();
+				int oprnd1 = st.pop();
+				st.push(oprnd1 * oprnd2);				
+				break;
+			}
+			
+			default:
+				st.push(Integer.parseInt(element));
+			}
+		}
+		return st.peek();
+	}
 	
 	public static boolean hasDuplicateBrackets(String exp) {
 		
@@ -76,7 +113,49 @@ public class Basics {
 //		System.out.println(st.size());
 		
 //		System.out.println(hasDuplicateBrackets("((a+b)) = c"));
-		System.out.println(hasBalancedBrackets("{(a+b)+[c + (d+e)]}"));
+//		System.out.println(hasBalancedBrackets("{(a+b)+[c + (d+e)]}"));
+//		System.out.println(evaluatePostfix("4 13 5 / +"));
+		
+		Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        String elements[] = new String[n];
+        for(int i = 0; i < n; i++)
+        	elements[i] = scn.next();
+        Stack<Integer> st = new Stack<>();
+		
+		for(String element: elements) {
+			System.out.println(element + " * ");
+			switch (element.charAt(0)) {
+			case '+': {
+				int oprnd2 = st.pop();
+				int oprnd1 = st.pop();
+				st.push(oprnd1 + oprnd2);
+				break;
+			}
+			case '-': {
+				int oprnd2 = st.pop();
+				int oprnd1 = st.pop();
+				st.push(oprnd1 - oprnd2);				
+				break;
+			}
+			case '/': {
+				int oprnd2 = st.pop();
+				int oprnd1 = st.pop();
+				st.push(oprnd1 / oprnd2);				
+				break;
+			}
+			case '*': {
+				int oprnd2 = st.pop();
+				int oprnd1 = st.pop();
+				st.push(oprnd1 * oprnd2);				
+				break;
+			}
+			
+			default:
+				st.push(Integer.parseInt(element));
+			}
+		}
+		System.out.println(st.peek());
 		
 	}
 
