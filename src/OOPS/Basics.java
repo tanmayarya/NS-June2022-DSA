@@ -1,7 +1,7 @@
 package OOPS;
 import Recursion.Questions2;
 
-class Student {
+class Student implements Comparable<Student> {
 	String name;
 	int rollno;
 	static int count;
@@ -38,6 +38,14 @@ class Student {
 		 System.out.println(count);
 //		printInfo(); 
 	}
+
+	@Override
+	public int compareTo(Student o) {
+//		return o.rollno - this.rollno;
+		if(this.rollno == o.rollno) return 0;
+		else if(this.rollno > o.rollno) return 1;
+		else return -1;
+	}
 }
 
 
@@ -57,6 +65,7 @@ public class Basics {
 		s1.rollno = 20;
 		s1.printInfo();
 		s2.printInfo();
+		System.out.println();
 		Student s3 = new Student();
 		s1.name = "Rajat";
 		s1.printInfo();
